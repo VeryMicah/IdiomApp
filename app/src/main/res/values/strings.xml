@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Idiom App</string>
+    
+    <string-array name="idioms">
+        <item>Does a bear crap in the woods?</item>
+        <item>Does the Pope wear a pointy hat?</item>
+        <item>As cool as a cucumber</item>
+        <item>Barking up the wrong tree</item>
+        <item>Kill two birds with one stone</item>
+    </string-array>
 </resources>
