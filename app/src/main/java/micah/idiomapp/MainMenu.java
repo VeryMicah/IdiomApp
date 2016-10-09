@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
 public class MainMenu extends AppCompatActivity {
     private static Random generator = new Random(); //used to select random statement, and select random options for replacement.
-    private String origStatement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +23,6 @@ public class MainMenu extends AppCompatActivity {
     }
 
     private void prepBtn_NrmlStatement() {
-        //allows access to strings.xml (& other res files)
-        final Resources res = getResources();
-        //get the array of statements
-        final String[] idioms = res.getStringArray(R.array.statements);
-
         //instantiate the views we'll be using
         final Button btn_normal = (Button) findViewById(R.id.main_btn_normalIdiom);
         final TextView tv_normal = (TextView) findViewById(R.id.main_et_idiom);
@@ -36,9 +31,9 @@ public class MainMenu extends AppCompatActivity {
         btn_normal.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                origStatement = getRandom(idioms);
-                origStatement = checkIfQuestion(origStatement);
-                tv_normal.setText(origStatement);
+                String statement = getRandomStatement();
+                //update the TextView
+                tv_normal.setText(statement);
             }
         });
     }
@@ -49,17 +44,27 @@ public class MainMenu extends AppCompatActivity {
         btn_silly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sillyStatement = origStatement;
+                String sillyStatement = getRandomStatement();
+                Toast.makeText(MainMenu.this, "silly old bear", Toast.LENGTH_SHORT).show();
                 //todo: replace variables
-
             }
         });
     }
 
-    private static String getRandom(String[] array) {
+    private String getRandomStatement() {
+        //get a snapshot of the resources as they are right now
+        final Resources res = getResources();
+        //get the array of statements
+        final String[] statements = res.getStringArray(R.array.statements);
 
-        int randomIndex = generator.nextInt(array.length);
-        return array[randomIndex];
+        //get random statement
+        int randomNumber = generator.nextInt(statements.length);
+        String statement = statements[randomNumber];
+
+        //check if it's a question
+        statement = checkIfQuestion(statement);
+
+        return statement;
     }
 
     //add a question mark, if necessary //todo implement string array to scan for question openers
