@@ -52,14 +52,23 @@ public class MainMenu extends AppCompatActivity {
     }
 
     private String getRandomStatement() {
-        //get a snapshot of the resources as they are right now
-        final Resources res = getResources();
-        //get the array of statements
-        final String[] statements = res.getStringArray(R.array.statements);
+        int randomNum = 0;
+        int compareNum = 0;
 
-        //get random statement
-        int randomNumber = generator.nextInt(statements.length);
-        String statement = statements[randomNumber];
+        //get a snapshot of the resources as they are right now
+        Resources res = getResources();
+        //get the array of statements
+        String[] statements = res.getStringArray(R.array.statements);
+
+        //until randomNum != compareNum...
+        while(randomNum == compareNum) {
+            //get random number
+            randomNum = generator.nextInt(statements.length);
+        }
+        compareNum = randomNum;
+
+        //gets statement at random position of the array
+        String statement = statements[randomNum];
 
         //check if it's a question
         statement = checkIfQuestion(statement);
