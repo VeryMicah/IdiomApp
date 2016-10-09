@@ -27,11 +27,19 @@ public class MainMenu extends AppCompatActivity {
         final Button btn_normal = (Button) findViewById(R.id.main_btn_normalIdiom);
         final TextView tv_normal = (TextView) findViewById(R.id.main_et_idiom);
 
+
         //set on click listener
         btn_normal.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                //get a random statement
                 String statement = getRandomStatement();
+
+                //while the random statement is equal to the current statement
+                while(statement.equals(tv_normal.getText().toString())){
+                    //get a new one
+                    statement = getRandomStatement();
+                }
                 //update the TextView
                 tv_normal.setText(statement);
             }
@@ -52,20 +60,12 @@ public class MainMenu extends AppCompatActivity {
     }
 
     private String getRandomStatement() {
-        int randomNum = 0;
-        int compareNum = 0;
-
         //get a snapshot of the resources as they are right now
         Resources res = getResources();
         //get the array of statements
         String[] statements = res.getStringArray(R.array.statements);
-
-        //until randomNum != compareNum...
-        while(randomNum == compareNum) {
-            //get random number
-            randomNum = generator.nextInt(statements.length);
-        }
-        compareNum = randomNum;
+        //select a random num within appropriate scope
+        int randomNum = generator.nextInt(statements.length);
 
         //gets statement at random position of the array
         String statement = statements[randomNum];
