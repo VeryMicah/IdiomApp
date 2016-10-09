@@ -24,7 +24,7 @@ public class MainMenu extends AppCompatActivity {
         Resources res = getResources(); //allows access to strings.xml (& other res files)
         final Button btn_normalIdiom = (Button) findViewById(R.id.main_btn_normalIdiom);
         final TextView tv_idiom = (TextView) findViewById(R.id.main_et_idiom);
-        final String[] idioms = res.getStringArray(R.array.idioms);
+        final String[] idioms = res.getStringArray(R.array.statements);
 
         btn_normalIdiom.setOnClickListener(new View.OnClickListener(){
             @Override

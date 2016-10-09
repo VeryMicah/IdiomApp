@@ -1,11 +1,56 @@
 <resources>
     <string name="app_name">Idiom App</string>
 
-    <string-array name="idioms">
-        <item>Does a bear crap in the woods?</item>
-        <item>Does the Pope wear a pointy hat?</item>
+    <string-array name="statements">
+        <item>Does a bear crap in the woods</item>
+        <item>Does the Pope wear a pointy hat</item>
         <item>As cool as a cucumber</item>
         <item>Barking up the wrong tree</item>
         <item>Kill two birds with one stone</item>
+        <item>A bird in the hand is worth two in the bush</item>
+        <item>A coward dies a thousand deaths, a brave man dies but once</item>
+        <item>A friend in need is a friend indeed</item>
+        <item>A job worth doing, is worth doing well</item>
     </string-array>
+
+
+    <!--NOUNS-->
+    <string-array name="nounSingular">
+        <item>bear</item>
+        <item>Pope</item>
+        <item>hat</item>
+        <item>cucumber</item>
+        <item>tree</item>
+        <item>bird</item>
+        <item>hand</item>
+        <item>bush</item>
+        <item>coward</item>
+        <item>brave man</item>
+        <item>friend</item>
+        <item>job</item>
+    </string-array>
+
+    <string-array name="nounMultiple">
+        <item>birds</item>
+    </string-array>
+
+    <string-array name="locations">
+        <item>woods</item>
+        <item>hand</item>
+        <item>bush</item>
+        <item>tree</item>
+    </string-array>
+
+    <string-array name="descripitors">
+        <item>cool</item>
+        <item>well</item>
+    </string-array>
+
+    <!--VERBS-->
+    <string-array name="verbBase">
+        <item>crap</item>
+        <item>wear</item>
+    </string-array>
+
+    <string-array name="verb_ing"></string-array>
 </resources>
