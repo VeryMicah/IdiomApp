@@ -52,5 +52,6 @@
         <item>wear</item>
     </string-array>
 
-    <string-array name="verb_ing"></string-array>
+    <string-array name="verb_ing">
+    </string-array>
 </resources>

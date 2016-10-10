@@ -36,10 +36,15 @@ public class MainMenu extends AppCompatActivity {
                 String statement = getRandomStatement();
 
                 //while the random statement is equal to the current statement
-                while(statement.equals(tv_normal.getText().toString())){
+                while(statement.equals( tv_normal.getText().toString() ) == true){
                     //get a new one
                     statement = getRandomStatement();
                 }
+
+//                check if it's a question
+                //todo this causes random selection to fail, questions are selected multiple times
+                statement = formatAsQuestion(statement);
+
                 //update the TextView
                 tv_normal.setText(statement);
             }
@@ -70,18 +75,17 @@ public class MainMenu extends AppCompatActivity {
         //gets statement at random position of the array
         String statement = statements[randomNum];
 
-        //check if it's a question
-        statement = checkIfQuestion(statement);
-
         return statement;
     }
 
-    //add a question mark, if necessary //todo implement string array to scan for question openers
-    private String checkIfQuestion(String s) {
-        if (s.startsWith("Does")){
-            s = s + "?";
+    //checks for question and adds a question mark, if necessary
+    private String formatAsQuestion(String statement) {
+        QuestionChecker checker = new QuestionChecker();
+
+        if (checker.isQuestion(statement) == true){
+            statement = statement + "?";
         }
-        return s;
+        return statement;
     }
 
 }
