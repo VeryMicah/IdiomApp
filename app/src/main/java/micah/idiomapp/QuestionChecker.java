@@ -38,8 +38,16 @@ public class QuestionChecker {
         indicators.add("Would");
     }
 
+    public boolean ifQuestion(String statement) {
+
+        String word = getFirstWord(statement);
+        if (indicators.contains(word)) isThisAQuestion = true; //Note that .contains() checks using Object.equals()
+            // TODO: 11/10/2016 further validation goes here
+        return isThisAQuestion;
+    }
+
     private String getFirstWord(String sentence){
-        //todo remove any sentence puctuation
+        //todo remove any sentence punctuation
 //        sentence = sentence.replaceAll("\\p{P}", "");
 //        sentence = sentence.replaceAll("[\\,\\?\\;\\.\\:\\!]", "");
 
@@ -48,11 +56,9 @@ public class QuestionChecker {
         return sentence.substring(0, i);
     }
 
-    public boolean isQuestion(String statement) {
-
-        String word = getFirstWord(statement);
-        if (indicators.contains(word)) isThisAQuestion = true; //Note that .contains() checks using .equals()
-
-        return isThisAQuestion;
+    @Override
+    //mostly useful for making toast
+    public String toString() {
+        return Boolean.toString(isThisAQuestion);
     }
 }

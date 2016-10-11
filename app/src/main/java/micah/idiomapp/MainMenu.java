@@ -32,20 +32,15 @@ public class MainMenu extends AppCompatActivity {
         btn_normal.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //get a random statement
-                String statement = getRandomStatement();
+                //build a random statement
+                String statement = makeRandomStatement();
 
-                //while the random statement is equal to the current statement
+                //while the statement is equal to what's currently being displayed
                 while(statement.equals( tv_normal.getText().toString() ) == true){
                     //get a new one
-                    statement = getRandomStatement();
+                    statement = makeRandomStatement();
                 }
 
-//                check if it's a question
-                //todo this causes random selection to fail, questions are selected multiple times
-                statement = formatAsQuestion(statement);
-
-                //update the TextView
                 tv_normal.setText(statement);
             }
         });
@@ -57,32 +52,33 @@ public class MainMenu extends AppCompatActivity {
         btn_silly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sillyStatement = getRandomStatement();
+                String sillyStatement = makeRandomStatement();
                 Toast.makeText(MainMenu.this, "silly old bear", Toast.LENGTH_SHORT).show();
                 //todo: replace variables
             }
         });
     }
 
-    private String getRandomStatement() {
+    private String makeRandomStatement() {
         //get a snapshot of the resources as they are right now
         Resources res = getResources();
         //get the array of statements
         String[] statements = res.getStringArray(R.array.statements);
         //select a random num within appropriate scope
         int randomNum = generator.nextInt(statements.length);
-
-        //gets statement at random position of the array
+        //get the statement at that position in the array
         String statement = statements[randomNum];
+        //check if the statement is a question and if it is, add a question mark.
+        statement = checkIfQuestion(statement);
 
         return statement;
     }
 
-    //checks for question and adds a question mark, if necessary
-    private String formatAsQuestion(String statement) {
-        QuestionChecker checker = new QuestionChecker();
+    /*checks for question and displays question mark, if necessary.*/
+    private String checkIfQuestion(String statement) {
+        QuestionChecker check = new QuestionChecker();
 
-        if (checker.isQuestion(statement) == true){
+        if (check.ifQuestion(statement) == true){
             statement = statement + "?";
         }
         return statement;
