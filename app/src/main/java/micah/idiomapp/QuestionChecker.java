@@ -22,25 +22,25 @@ public class QuestionChecker {
     }
 
     private void buildIndicatorList(){
-        indicators.add("Can");
-        indicators.add("Could");
-        indicators.add("Do");
-        indicators.add("Does");
-        indicators.add("How");
-        indicators.add("If");
-        indicators.add("Is");
-        indicators.add("May");
-        indicators.add("Should");
-        indicators.add("What");
-        indicators.add("Which");
-        indicators.add("Who");
-        indicators.add("Why");
-        indicators.add("Would");
+        indicators.add("can");
+        indicators.add("could");
+        indicators.add("do");
+        indicators.add("does");
+        indicators.add("how");
+        indicators.add("if");
+        indicators.add("is");
+        indicators.add("may");
+        indicators.add("should");
+        indicators.add("what");
+        indicators.add("which");
+        indicators.add("who");
+        indicators.add("why");
+        indicators.add("would");
     }
 
     public boolean ifQuestion(String statement) {
 
-        String word = getFirstWord(statement);
+        String word = getFirstWord(statement).toLowerCase();
         if (indicators.contains(word)) isThisAQuestion = true; //Note that .contains() checks using Object.equals()
             // TODO: 11/10/2016 further validation goes here
         return isThisAQuestion;

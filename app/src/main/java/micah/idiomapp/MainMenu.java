@@ -60,10 +60,8 @@ public class MainMenu extends AppCompatActivity {
     }
 
     private String makeRandomStatement() {
-        //get a snapshot of the resources as they are right now
-        Resources res = getResources();
-        //get the array of statements
-        String[] statements = res.getStringArray(R.array.statements);
+        //get the array of statements from app resources file
+        String[] statements = getResources().getStringArray(R.array.statements);
         //select a random num within appropriate scope
         int randomNum = generator.nextInt(statements.length);
         //get the statement at that position in the array

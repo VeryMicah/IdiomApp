@@ -1,19 +1,33 @@
 <resources>
     <string name="app_name">Idiom App</string>
+    <string name="buildNumber">You\'re using build number: 0.15</string>
 
     <string-array name="statements">
-        <item>Does a bear crap in the woods</item>
-        <item>Does the Pope wear a pointy hat</item>
-        <item>As cool as a cucumber</item>
-        <item>Barking up the wrong tree</item>
-        <item>Kill two birds with one stone</item>
-        <item>A bird in the hand is worth two in the bush</item>
-        <item>A coward dies a thousand deaths, a brave man dies but once</item>
-        <item>A friend in need is a friend indeed</item>
-        <item>A job worth doing, is worth doing well</item>
+        <item>does a bear crap in the woods</item>
+        <item>does the Pope wear a pointy hat</item>
+        <item>as cool as a cucumber</item>
+        <item>barking up the wrong tree</item>
+        <item>kill two birds with one stone</item>
+        <item>a bird in the hand is worth two in the bush</item>
+        <item>a coward dies a thousand deaths, a brave man dies but once</item>
+        <item>a friend in need is a friend indeed</item>
+        <item>a job worth doing, is worth doing well</item>
     </string-array>
 
-    <!--NOUNS-->
+    <!--Manually tagging at this point-->
+    <string-array name="statements_tagged">
+        <item>does a ns/bear vb/crap in the ns/woods</item>
+        <item>does the ns/Pope vb/wear a aj/pointy ns/hat</item>
+        <item>as aj/cool as a ns/cucumber</item>
+        <item>vbi/barking up the aj/wrong ns/tree</item>
+        <item>kill two ns/birds with one ns/stone</item>
+        <item>a ns/bird in the lc/hand is worth two in the lc/bush</item>
+        <item>a ns/coward dies a thousand deaths, a ns/brave man dies but once</item>
+        <item>a ns/friend in need is a ns/friend indeed</item>
+        <item>a ns/job worth doing, is worth doing aj/well</item>
+    </string-array>
+
+    <!--ns/-->
     <string-array name="nounSingular">
         <item>bear</item>
         <item>Pope</item>
@@ -33,6 +47,7 @@
         <item>birds</item>
     </string-array>
 
+    <!--lc/-->
     <string-array name="locations">
         <item>woods</item>
         <item>hand</item>
@@ -40,9 +55,12 @@
         <item>tree</item>
     </string-array>
 
-    <string-array name="descripitors">
+    <!--aj/-->
+    <string-array name="adjectives">
         <item>cool</item>
         <item>well</item>
+        <item>pointy</item>
+        <item>wrong</item>
     </string-array>
 
     <!--VERBS-->
@@ -52,5 +70,7 @@
     </string-array>
 
     <string-array name="verb_ing">
+        <item>barking</item>
+        <item>doing</item>
     </string-array>
 </resources>
