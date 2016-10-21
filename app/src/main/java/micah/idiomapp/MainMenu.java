@@ -25,7 +25,7 @@ public class MainMenu extends AppCompatActivity {
     private void prepBtn_NrmlStatement() {
         //instantiate the views we'll be using
         final Button btn_normal = (Button) findViewById(R.id.main_btn_normalIdiom);
-        final TextView tv_normal = (TextView) findViewById(R.id.main_et_idiom);
+        final TextView tv_statement = (TextView) findViewById(R.id.main_et_idiom);
 
 
         //set on click listener
@@ -36,15 +36,15 @@ public class MainMenu extends AppCompatActivity {
                 String statement = makeRandomStatement();
 
                 //while the statement is equal to what's currently being displayed
-                while(statement.equals( tv_normal.getText().toString() ) == true){
+                while(statement.equals( tv_statement.getText().toString() ) == true){
                     //get a new one
                     statement = makeRandomStatement();
                 }
 
-                tv_normal.setText(statement);
+                tv_statement.setText(statement);
             }
         });
-    } 
+    }
 
     private void prepBtn_SillyStatement() {
         final Button btn_silly = (Button) findViewById(R.id.main_btn_sillyIdiom);
@@ -62,6 +62,7 @@ public class MainMenu extends AppCompatActivity {
                     sillyStatement = makeRandomStatement();
                 }
                 scan.scanSentence(sillyStatement);
+                tv_statement.setText(sillyStatement);
             }
         });
     }

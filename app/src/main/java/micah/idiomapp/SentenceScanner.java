@@ -31,18 +31,18 @@ public class SentenceScanner {
                 word = response;
             }
         }
-        //todo rebuild sentence
         return buildSentence(wordList);
     }
 
+    //todo I believe this method is not working
     //    Searches for a tag in the word.
 //    If it finds one, a new word (from the appropriate collection) is requested and returned.
 //    If not, it returns "no tag found."
     private String analyse(String word) {
-        if (!word.contains("/")) {
+        if (word.indexOf('/') == -1) {
             return "no tag found";
         } else {
-            int tagEnd = word.indexOf("/"); // "/" indicates the END of a tag
+            int tagEnd = word.indexOf('/'); // "/" indicates the END of a tag
             String typeTag = word.substring(0, tagEnd);
             return aWholeNewWord(typeTag);
         }
