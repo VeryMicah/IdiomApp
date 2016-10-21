@@ -44,17 +44,24 @@ public class MainMenu extends AppCompatActivity {
                 tv_normal.setText(statement);
             }
         });
-    }
+    } 
 
     private void prepBtn_SillyStatement() {
         final Button btn_silly = (Button) findViewById(R.id.main_btn_sillyIdiom);
+        final TextView tv_statement = (TextView) findViewById(R.id.main_et_idiom);
 
         btn_silly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sillyStatement = makeRandomStatement();
-                Toast.makeText(MainMenu.this, "silly old bear", Toast.LENGTH_SHORT).show();
-                //todo: replace variables
+                SentenceScanner scan = new SentenceScanner();
+                String sillyStatement = makeSillyStatement();
+//todo this might be broken
+                //while the statement is equal to what's currently being displayed
+                while(sillyStatement.equals( tv_statement.getText().toString() ) == true){
+                    //get a new one
+                    sillyStatement = makeRandomStatement();
+                }
+                scan.scanSentence(sillyStatement);
             }
         });
     }
@@ -62,6 +69,19 @@ public class MainMenu extends AppCompatActivity {
     private String makeRandomStatement() {
         //get the array of statements from app resources file
         String[] statements = getResources().getStringArray(R.array.statements);
+        //select a random num within appropriate scope
+        int randomNum = generator.nextInt(statements.length);
+        //get the statement at that position in the array
+        String statement = statements[randomNum];
+        //check if the statement is a question and if it is, add a question mark.
+        statement = checkIfQuestion(statement);
+
+        return statement;
+    }
+
+    private String makeSillyStatement() {
+        //get the array of statements from app resources file
+        String[] statements = getResources().getStringArray(R.array.statements_tagged);
         //select a random num within appropriate scope
         int randomNum = generator.nextInt(statements.length);
         //get the statement at that position in the array
