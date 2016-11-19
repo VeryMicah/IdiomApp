@@ -1,7 +1,10 @@
 package micah.idiomapp;
 
+import android.content.Context;
 import android.content.res.Resources;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -15,37 +18,35 @@ public class SentenceScanner {
 
     //Finds tagged words within a sentence.
     //Replaces any tagged words with a different word of the same type.
-    public String scanSentence(String sentence) {
+    public String replaceWords(String sentence) {
+        ArrayList<String> wordList = new ArrayList<>();
 
-        //Split into an array of words
-        String[] wordList = sentence.split("\\s+");
+        //Break sentence down into words
+        String[] demWords = sentence.split("\\s+");
+
+        //add each word to the arraylist of words
+        for (String word : demWords){
+            wordList.add(word);
+        }
 
         //check each word in the array
-        for (String word : wordList
-                ) {
-            String response = analyse(word);
-            if (response.equals("no tag found")){
-                //no tag in word, do nothing with it
-            } else {
-                //word has a tag: Replace the word with the new word
-                word = response;
+        for (String word : wordList) {
+            //if word contains a tag...
+            if (word.indexOf('/') != -1) {
+                //...replace it with a new (appropriate) word.
+                wordList.set(wordList.indexOf(word), findAndReplace(word));
             }
         }
         return buildSentence(wordList);
     }
 
-    //todo I believe this method is not working
-    //    Searches for a tag in the word.
+//    Searches for a tag in the word.
 //    If it finds one, a new word (from the appropriate collection) is requested and returned.
 //    If not, it returns "no tag found."
-    private String analyse(String word) {
-        if (word.indexOf('/') == -1) {
-            return "no tag found";
-        } else {
-            int tagEnd = word.indexOf('/'); // "/" indicates the END of a tag
-            String typeTag = word.substring(0, tagEnd);
-            return aWholeNewWord(typeTag);
-        }
+    private String findAndReplace(String word) {
+        String typeTag = word.substring(0, word.indexOf("/")+1); // "/" indicates the END of a tag
+//        Toast.makeText(c, typeTag, Toast.LENGTH_SHORT).show();
+        return aWholeNewWord(typeTag);
     }
 
     //Takes a tag and gets a word from the associated collection.
@@ -54,24 +55,27 @@ public class SentenceScanner {
         Resources res = Resources.getSystem();
         String newWord = "";
 
-        switch (typeTag) {
+        switch (typeTag) { //todo using resource lookups causes crash
             case "ns/":
-                newWord = getRandom(res.getStringArray(R.array.nounSingular));
+                newWord = "Pope"; //getRandom(res.getStringArray(R.array.nounSingular));
                 break;
             case "vb/":
-                newWord = getRandom(res.getStringArray(R.array.verbBase));
+                newWord = "crap";//getRandom(res.getStringArray(R.array.verbBase));
+                break;
+            case "vbi/":
+                newWord = "stabbing";//getRandom(res.getStringArray(R.array.verb_ing));
                 break;
             case "aj/":
-                newWord = getRandom(res.getStringArray(R.array.adjectives));
+                newWord = "pointy";//getRandom(res.getStringArray(R.array.adjectives));
                 break;
             case "lc/":
-                newWord = getRandom(res.getStringArray(R.array.locations));
+                newWord = "woods";//getRandom(res.getStringArray(R.array.locations));
                 break;
         }
         return newWord;
     }
 
-    private String buildSentence(String[] array){
+    private String buildSentence(ArrayList<String> array) {
         StringBuilder builder = new StringBuilder();
 
         for (String string : array) {

@@ -1,12 +1,10 @@
 package micah.idiomapp;
 
-import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Random;
 
@@ -40,7 +38,6 @@ public class MainMenu extends AppCompatActivity {
                     //get a new one
                     statement = makeRandomStatement();
                 }
-
                 tv_statement.setText(statement);
             }
         });
@@ -54,15 +51,15 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SentenceScanner scan = new SentenceScanner();
+                //todo true random is not working for some reason?
+                //select and prepare a tagged statement from res
                 String sillyStatement = makeSillyStatement();
-//todo this might be broken
                 //while the statement is equal to what's currently being displayed
                 while(sillyStatement.equals( tv_statement.getText().toString() ) == true){
                     //get a new one
-                    sillyStatement = makeRandomStatement();
+                    sillyStatement = makeSillyStatement();
                 }
-                scan.scanSentence(sillyStatement);
-                tv_statement.setText(sillyStatement);
+                tv_statement.setText(scan.replaceWords(sillyStatement));
             }
         });
     }

@@ -72,5 +72,6 @@
     <string-array name="verb_ing">
         <item>barking</item>
         <item>doing</item>
+        <item>stabbing</item>
     </string-array>
 </resources>
