@@ -1,75 +1,62 @@
 package micah.idiomapp;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.widget.Toast;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
 /**
  * Created by micah on 18/10/2016.
+ * READ-ME
+ * This class demands a LinkedHashMap.  Each LinkedHashMap entry should contain:
+ * (1) A tag, which has been used to identify individual words in your sentence that the sentence scanner will replace.
+ * (2) An array of words that can be used as replacements for words with the associated tag.
+ *
+ * IDENTIFYING WORDS:
+ * Tags should precede the word they are identifying, and finish with the '/' character.  E.g. "Hello world" tagged might
+ * be, "Hello noun/world."
  */
 
 public class SentenceScanner {
-//    private LinkedHashMap<String, String[]> indicators = new LinkedHashMap<>();
     private ArrayList<String> tags = new ArrayList<>();
-    private String tag1, tag2, tag3, tag4, tag5;
-    private String[] tag1Words, tag2Words, tag3Words, tag4Words, tag5Words;
+    private ArrayList<String[]> wordGroups = new ArrayList<>();
+    private ArrayList<String> sentenceSplit = new ArrayList<>();
 
     //Constructor
-    //Must be passed a LinkedHashMap containing String tags, each associated with a String array of words.
-    public SentenceScanner(LinkedHashMap<String, String []> indicators) {
-//        this.indicators = indicators;
-
-        //For each entry in the provided HashMap...
-        for (Map.Entry<String, String[]> entry : indicators.entrySet()){
-            //Add the key to an ArrayList (which can then be queried based on index)
+    public SentenceScanner(LinkedHashMap<String, String[]> tagsAndWords) {
+        //For each entry in the provided LinkedHashMap...
+        for (Map.Entry<String, String[]> entry : tagsAndWords.entrySet()) {
+            //Add the key (tag) and value (wordGroup) to an ArrayList (which can then be queried based on index)
             tags.add(entry.getKey());
+            wordGroups.add(entry.getValue());
         }
-
-        //Extract and assign tags and words.
-        this.tag1 = tags.get(0);
-        this.tag2 = tags.get(1);
-        this.tag3 = tags.get(2);
-        this.tag4 = tags.get(3);
-        this.tag5 = tags.get(4);
-        this.tag1Words = indicators.get(tag1);
-        this.tag2Words = indicators.get(tag2);
-        this.tag3Words = indicators.get(tag3);
-        this.tag4Words = indicators.get(tag4);
-        this.tag5Words = indicators.get(tag5);
     }
 
-    //Splits sentence into an ArrayList and processes each word, then reassembles
+    //Splits sentence into an ArrayList and processes each word, then reassembles.
     public String scanAndSwap(String sentence) {
-        ArrayList<String> wordList = new ArrayList<>();
 
         //Break sentence down into words (splits on space character)
         String[] demWords = sentence.split("\\s+");
 
         //add each word to the arraylist of words
         for (String word : demWords) {
-            wordList.add(word);
+            sentenceSplit.add(word);
         }
-        checkForTags(wordList);
-        return buildSentence(wordList);
+        checkForTags(sentenceSplit);
+        return buildSentence(sentenceSplit);
     }
 
-//    Searches a sentence for tagged words.
+    //    Searches a sentence for tagged words.
 //    If it finds one, the word is replaced with an alternative word (from the appropriate collection)
     private ArrayList<String> checkForTags(ArrayList<String> words) {
         //check each word in the array
         for (String word : words) {
             //if word contains a tag...
-            if (word.indexOf('/') != -1) {
+            if (word.indexOf('/') != -1) { //todo search for the specific tags sent by the user instead - makes this more widely useable
                 //identify the tag...
                 String typeTag = word.substring(0, word.indexOf("/") + 1); // "/" indicates the END of a tag
                 //...and replace the word with a new word from the appropriate collection.
-                words.set(words.indexOf(word), aWholeNewWord(typeTag));
+                words.set(words.indexOf(word), getNewWord(typeTag));
             }
         }
         return words;
@@ -77,19 +64,19 @@ public class SentenceScanner {
 
     //Takes a tag and gets a word from the associated collection.
     //Is only called if we know the word contains a tag.
-    private String aWholeNewWord(String typeTag) {
+    private String getNewWord(String typeTag) {
+        String newWord = "";
+        int index = 0;
 
-        if (typeTag.equals(tag1)) {
-            return getRandom(tag1Words);
-        } else if (typeTag.equals(tag2)) {
-            return getRandom(tag2Words);
-        } else if (typeTag.equals(tag3)) {
-            return getRandom(tag3Words);
-        } else if (typeTag.equals(tag4)) {
-            return getRandom(tag4Words);
-        } else if (typeTag.equals(tag5)) {
-            return getRandom(tag5Words);
-        } else return "no tag here matey potatey";
+        //Iterate the list of provided tags, to see if any match the tag we found.
+        while (index < tags.size() - 1) {
+            if (typeTag.equals(tags.get(index))) {
+                //if it does, get a new word from the associated list and return it.
+                newWord = getRandom(wordGroups.get(index));
+            }
+            index++;
+        }
+        return newWord;
     }
 
     private String buildSentence(ArrayList<String> array) {
