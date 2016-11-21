@@ -5,6 +5,9 @@ import android.content.res.Resources;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -12,67 +15,81 @@ import java.util.Random;
  */
 
 public class SentenceScanner {
+//    private LinkedHashMap<String, String[]> indicators = new LinkedHashMap<>();
+    private ArrayList<String> tags = new ArrayList<>();
+    private String tag1, tag2, tag3, tag4, tag5;
+    private String[] tag1Words, tag2Words, tag3Words, tag4Words, tag5Words;
 
-    public SentenceScanner() {
+    //Constructor
+    //Must be passed a LinkedHashMap containing String tags, each associated with a String array of words.
+    public SentenceScanner(LinkedHashMap<String, String []> indicators) {
+//        this.indicators = indicators;
+
+        //For each entry in the provided HashMap...
+        for (Map.Entry<String, String[]> entry : indicators.entrySet()){
+            //Add the key to an ArrayList (which can then be queried based on index)
+            tags.add(entry.getKey());
+        }
+
+        //Extract and assign tags and words.
+        this.tag1 = tags.get(0);
+        this.tag2 = tags.get(1);
+        this.tag3 = tags.get(2);
+        this.tag4 = tags.get(3);
+        this.tag5 = tags.get(4);
+        this.tag1Words = indicators.get(tag1);
+        this.tag2Words = indicators.get(tag2);
+        this.tag3Words = indicators.get(tag3);
+        this.tag4Words = indicators.get(tag4);
+        this.tag5Words = indicators.get(tag5);
     }
 
-    //Finds tagged words within a sentence.
-    //Replaces any tagged words with a different word of the same type.
-    public String replaceWords(String sentence) {
+    //Splits sentence into an ArrayList and processes each word, then reassembles
+    public String scanAndSwap(String sentence) {
         ArrayList<String> wordList = new ArrayList<>();
 
-        //Break sentence down into words
+        //Break sentence down into words (splits on space character)
         String[] demWords = sentence.split("\\s+");
 
         //add each word to the arraylist of words
-        for (String word : demWords){
+        for (String word : demWords) {
             wordList.add(word);
         }
-
-        //check each word in the array
-        for (String word : wordList) {
-            //if word contains a tag...
-            if (word.indexOf('/') != -1) {
-                //...replace it with a new (appropriate) word.
-                wordList.set(wordList.indexOf(word), findAndReplace(word));
-            }
-        }
+        checkForTags(wordList);
         return buildSentence(wordList);
     }
 
-//    Searches for a tag in the word.
-//    If it finds one, a new word (from the appropriate collection) is requested and returned.
-//    If not, it returns "no tag found."
-    private String findAndReplace(String word) {
-        String typeTag = word.substring(0, word.indexOf("/")+1); // "/" indicates the END of a tag
-//        Toast.makeText(c, typeTag, Toast.LENGTH_SHORT).show();
-        return aWholeNewWord(typeTag);
+//    Searches a sentence for tagged words.
+//    If it finds one, the word is replaced with an alternative word (from the appropriate collection)
+    private ArrayList<String> checkForTags(ArrayList<String> words) {
+        //check each word in the array
+        for (String word : words) {
+            //if word contains a tag...
+            if (word.indexOf('/') != -1) {
+                //identify the tag...
+                String typeTag = word.substring(0, word.indexOf("/") + 1); // "/" indicates the END of a tag
+                //...and replace the word with a new word from the appropriate collection.
+                words.set(words.indexOf(word), aWholeNewWord(typeTag));
+            }
+        }
+        return words;
     }
 
     //Takes a tag and gets a word from the associated collection.
-    //Should only be called if we know the word contains a tag.
+    //Is only called if we know the word contains a tag.
     private String aWholeNewWord(String typeTag) {
-        Resources res = Resources.getSystem();
-        String newWord = "";
 
-        switch (typeTag) { //todo using resource lookups causes crash
-            case "ns/":
-                newWord = "Pope"; //getRandom(res.getStringArray(R.array.nounSingular));
-                break;
-            case "vb/":
-                newWord = "crap";//getRandom(res.getStringArray(R.array.verbBase));
-                break;
-            case "vbi/":
-                newWord = "stabbing";//getRandom(res.getStringArray(R.array.verb_ing));
-                break;
-            case "aj/":
-                newWord = "pointy";//getRandom(res.getStringArray(R.array.adjectives));
-                break;
-            case "lc/":
-                newWord = "woods";//getRandom(res.getStringArray(R.array.locations));
-                break;
-        }
-        return newWord;
+        if (typeTag.equals(tag1)) {
+            return getRandom(tag1Words);
+        } else if (typeTag.equals(tag2)) {
+            return getRandom(tag2Words);
+        } else if (typeTag.equals(tag3)) {
+            return getRandom(tag3Words);
+        } else if (typeTag.equals(tag4)) {
+            return getRandom(tag4Words);
+        } else if (typeTag.equals(tag5)) {
+            return getRandom(tag5Words);
+        } else return "no tag here matey potatey";
     }
 
     private String buildSentence(ArrayList<String> array) {

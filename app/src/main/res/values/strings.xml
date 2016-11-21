@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Idiom App</string>
-    <string name="buildNumber">You\'re using build number: 0.2.0</string>
+    <string name="buildNumber">You\'re using build number: 0.2.1</string>
 
     <string-array name="statements">
         <item>does a bear crap in the woods</item>
@@ -14,6 +14,14 @@
         <item>a job worth doing, is worth doing well</item>
     </string-array>
 
+    <string-array name="tags">
+        <item>ns/</item>
+        <item>vb/</item>
+        <item>vbi/</item>
+        <item>aj/</item>
+        <item>lc/</item>
+    </string-array>
+
     <!--Manually tagging at this point-->
     <string-array name="statements_tagged">
         <item>does a ns/bear vb/crap in the ns/woods</item>
@@ -22,13 +30,13 @@
         <item>vbi/barking up the aj/wrong ns/tree</item>
         <item>kill two ns/birds with one ns/stone</item>
         <item>a ns/bird in the lc/hand is worth two in the lc/bush</item>
-        <item>a ns/coward dies a thousand deaths, a ns/brave man dies but once</item>
+        <item>a ns/coward dies a thousand deaths, a brave ns/man dies but once</item>
         <item>a ns/friend in need is a ns/friend indeed</item>
         <item>a ns/job worth doing, is worth doing aj/well</item>
     </string-array>
 
     <!--ns/-->
-    <string-array name="nounSingular">
+    <string-array name="ns_nounSingular">
         <item>bear</item>
         <item>Pope</item>
         <item>hat</item>
@@ -43,12 +51,12 @@
         <item>job</item>
     </string-array>
 
-    <string-array name="nounMultiple">
+    <string-array name="nm_nounMultiple">
         <item>birds</item>
     </string-array>
 
     <!--lc/-->
-    <string-array name="locations">
+    <string-array name="lc_locations">
         <item>woods</item>
         <item>hand</item>
         <item>bush</item>
@@ -56,7 +64,7 @@
     </string-array>
 
     <!--aj/-->
-    <string-array name="adjectives">
+    <string-array name="aj_adjectives">
         <item>cool</item>
         <item>well</item>
         <item>pointy</item>
@@ -64,12 +72,12 @@
     </string-array>
 
     <!--VERBS-->
-    <string-array name="verbBase">
+    <string-array name="vb_verbBase">
         <item>crap</item>
         <item>wear</item>
     </string-array>
 
-    <string-array name="verb_ing">
+    <string-array name="vbi_verbing">
         <item>barking</item>
         <item>doing</item>
         <item>stabbing</item>

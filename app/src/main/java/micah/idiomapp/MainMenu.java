@@ -1,11 +1,14 @@
 package micah.idiomapp;
 
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class MainMenu extends AppCompatActivity {
@@ -46,11 +49,22 @@ public class MainMenu extends AppCompatActivity {
     private void prepBtn_SillyStatement() {
         final Button btn_silly = (Button) findViewById(R.id.main_btn_sillyIdiom);
         final TextView tv_statement = (TextView) findViewById(R.id.main_et_idiom);
+        final LinkedHashMap<String, String[]> searchElements = new LinkedHashMap<>();
+        Resources res = getResources();
+
+        //build a Linked Hash Map to tell SentenceScanner what to look for.
+        searchElements.put(res.getStringArray(R.array.tags)[0], res.getStringArray(R.array.ns_nounSingular));
+        searchElements.put(res.getStringArray(R.array.tags)[1], res.getStringArray(R.array.vb_verbBase));
+        searchElements.put(res.getStringArray(R.array.tags)[2], res.getStringArray(R.array.vbi_verbing));
+        searchElements.put(res.getStringArray(R.array.tags)[3], res.getStringArray(R.array.aj_adjectives));
+        searchElements.put(res.getStringArray(R.array.tags)[4], res.getStringArray(R.array.lc_locations));
 
         btn_silly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SentenceScanner scan = new SentenceScanner();
+                SentenceScanner ss = new SentenceScanner(searchElements);
+
+
                 //todo true random is not working for some reason?
                 //select and prepare a tagged statement from res
                 String sillyStatement = makeSillyStatement();
@@ -59,7 +73,7 @@ public class MainMenu extends AppCompatActivity {
                     //get a new one
                     sillyStatement = makeSillyStatement();
                 }
-                tv_statement.setText(scan.replaceWords(sillyStatement));
+                tv_statement.setText(ss.scanAndSwap(sillyStatement));
             }
         });
     }
