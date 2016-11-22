@@ -1,5 +1,7 @@
 package micah.idiomapp;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -65,11 +67,11 @@ public class SentenceScanner {
     //Takes a tag and gets a word from the associated collection.
     //Is only called if we know the word contains a tag.
     private String getNewWord(String typeTag) {
-        String newWord = "";
+        String newWord = "oops";
         int index = 0;
 
         //Iterate the list of provided tags, to see if any match the tag we found.
-        while (index < tags.size() - 1) {
+        while (index < tags.size()) {
             if (typeTag.equals(tags.get(index))) {
                 //if it does, get a new word from the associated list and return it.
                 newWord = getRandom(wordGroups.get(index));
