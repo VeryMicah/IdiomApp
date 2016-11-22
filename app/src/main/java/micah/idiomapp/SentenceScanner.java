@@ -10,6 +10,9 @@ import java.util.Random;
 /**
  * Created by micah on 18/10/2016.
  * READ-ME
+ * SentenceScanner is designed to read sentences in which certain words have been tagged for replacement, using tags
+ * specified by you.  It will then replace tagged words with alternatives from a list, also specified by you.
+ *
  * This class demands a LinkedHashMap.  Each LinkedHashMap entry should contain:
  * (1) A tag, which has been used to identify individual words in your sentence that the sentence scanner will replace.
  * (2) An array of words that can be used as replacements for words with the associated tag.
