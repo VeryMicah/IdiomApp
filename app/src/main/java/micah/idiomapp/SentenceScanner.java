@@ -13,10 +13,6 @@ import java.util.Random;
  * This class demands a LinkedHashMap.  Each LinkedHashMap entry should contain:
  * (1) A tag, which has been used to identify individual words in your sentence that the sentence scanner will replace.
  * (2) An array of words that can be used as replacements for words with the associated tag.
- *
- * IDENTIFYING WORDS:
- * Tags should precede the word they are identifying, and finish with the '/' character.  E.g. "Hello world" tagged might
- * be, "Hello noun/world."
  */
 
 public class SentenceScanner {
@@ -51,14 +47,15 @@ public class SentenceScanner {
     //    Searches a sentence for tagged words.
 //    If it finds one, the word is replaced with an alternative word (from the appropriate collection)
     private ArrayList<String> checkForTags(ArrayList<String> words) {
-        //check each word in the array
+        //Check each word in the array...
         for (String word : words) {
-            //if word contains a tag...
-            if (word.indexOf('/') != -1) { //todo search for the specific tags sent by the user instead - makes this more widely useable
-                //identify the tag...
-                String typeTag = word.substring(0, word.indexOf("/") + 1); // "/" indicates the END of a tag
-                //...and replace the word with a new word from the appropriate collection.
-                words.set(words.indexOf(word), getNewWord(typeTag));
+            //...for each tag in the collection...
+            for (String tag : tags) {
+                //...if the word contains the tag...
+                if (word.contains(tag)) {
+                    //...replace the word with a new word from the appropriate collection.
+                    words.set(words.indexOf(word), getNewWord(tag));
+                }
             }
         }
         return words;
