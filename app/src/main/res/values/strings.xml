@@ -1,38 +1,33 @@
 <resources>
     <string name="app_name">Idiom App</string>
-    <string name="buildNumber">You\'re using build number: 0.2.3</string>
+    <string name="buildNumber">You\'re using build number: 0.2.4</string>
 
-    <string-array name="statements">
-        <item>does a bear crap in the woods</item>
-        <item>does the Pope wear a pointy hat</item>
-        <item>as cool as a cucumber</item>
-        <item>barking up the wrong tree</item>
-        <item>kill two birds with one stone</item>
-        <item>a bird in the hand is worth two in the bush</item>
-        <item>a coward dies a thousand deaths, a brave man dies but once</item>
-        <item>a friend in need is a friend indeed</item>
-        <item>a job worth doing, is worth doing well</item>
-    </string-array>
+    <string name="tag_nounSingular">ns/</string>
+    <string name="tag_nounMultiple">nm/</string>
+    <string name="tag_actionVerbs">avb/</string>
+    <string name="tag_doingVerbs">dvb/</string>
+    <string name="tag_verbIng">vbi/</string>
+    <string name="tag_adjective">aj/</string>
+    <string name="tag_location">lc/</string>
 
-    <string-array name="tags">
-        <item>ns/</item>
-        <item>vb/</item>
-        <item>vbi/</item>
-        <item>aj/</item>
-        <item>lc/</item>
-    </string-array>
+
 
     <!--Manually tagging at this point-->
-    <string-array name="statements_tagged">
-        <item>does a ns/bear vb/crap in the ns/woods</item>
-        <item>does the ns/Pope vb/wear a aj/pointy ns/hat</item>
+    <string-array name="statements">
+        <item>does a ns/bear avb/crap in the lc/woods</item>
+        <item>does the ns/Pope avb/wear a aj/pointy ns/hat</item>
         <item>as aj/cool as a ns/cucumber</item>
         <item>vbi/barking up the aj/wrong ns/tree</item>
-        <item>kill two ns/birds with one ns/stone</item>
+        <item>kill two nm/birds with one ns/stone</item>
         <item>a ns/bird in the lc/hand is worth two in the lc/bush</item>
         <item>a ns/coward dies a thousand deaths, a brave ns/man dies but once</item>
         <item>a ns/friend in need is a ns/friend indeed</item>
-        <item>a ns/job worth doing, is worth doing aj/well</item>
+        <item>a ns/job worth vbi/doing, is worth vbi/doing aj/well</item>
+        <item>all\'s aj/fair in love and war</item>
+        <item>don\'t avb/count your nm/chickens before they avb/hatch</item>
+        <item>The ns/apple never falls far from the ns/tree</item>
+        <item>A ns/fool and his ns/money are soon parted</item>
+        <item>give a ns/man a ns/fish and he dvb/eats for a day.  Teach a ns/man to ns/fish and he dvb/eats for a lifetime.</item>
     </string-array>
 
     <!--ns/-->
@@ -48,11 +43,23 @@
         <item>coward</item>
         <item>brave man</item>
         <item>friend</item>
-        <item>job</item>
+        <item>apple</item>
     </string-array>
 
     <string-array name="nm_nounMultiple">
+        <item>bears</item>
+        <item>Popes</item>
+        <item>hats</item>
+        <item>cucumbers</item>
+        <item>trees</item>
         <item>birds</item>
+        <item>hands</item>
+        <item>bushes</item>
+        <item>cowards</item>
+        <item>brave men</item>
+        <item>friends</item>
+        <item>woods</item>
+        <item>chickens</item>
     </string-array>
 
     <!--lc/-->
@@ -61,20 +68,35 @@
         <item>hand</item>
         <item>bush</item>
         <item>tree</item>
+        <item>home</item>
     </string-array>
 
     <!--aj/-->
     <string-array name="aj_adjectives">
         <item>cool</item>
-        <item>well</item>
         <item>pointy</item>
         <item>wrong</item>
+        <item>fair</item>
+        <item>pretty</item>
     </string-array>
 
     <!--VERBS-->
-    <string-array name="vb_verbBase">
+    <string-array name="avb_actionVerbs">
         <item>crap</item>
-        <item>wear</item>
+        <item>burn</item>
+        <item>drive</item>
+        <item>paint</item>
+        <item>study</item>
+        <item>eat</item>
+    </string-array>
+
+    <string-array name="dvb_doingVerbs">
+        <item>craps</item>
+        <item>burns</item>
+        <item>drives</item>
+        <item>paints</item>
+        <item>studies</item>
+        <item>eats</item>
     </string-array>
 
     <string-array name="vbi_verbing">

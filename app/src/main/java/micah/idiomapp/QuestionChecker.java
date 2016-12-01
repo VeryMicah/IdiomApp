@@ -22,20 +22,20 @@ public class QuestionChecker {
     }
 
     private void buildIndicatorList(){
-        indicators.add("can");
-        indicators.add("could");
-        indicators.add("do");
-        indicators.add("does");
-        indicators.add("how");
-        indicators.add("if");
-        indicators.add("is");
-        indicators.add("may");
-        indicators.add("should");
-        indicators.add("what");
-        indicators.add("which");
-        indicators.add("who");
-        indicators.add("why");
-        indicators.add("would");
+        indicators.add("Can");
+        indicators.add("Could");
+        indicators.add("Do");
+        indicators.add("Does");
+        indicators.add("How");
+        indicators.add("If");
+        indicators.add("Is");
+        indicators.add("May");
+        indicators.add("Should");
+        indicators.add("What");
+        indicators.add("Which");
+        indicators.add("Who");
+        indicators.add("Why");
+        indicators.add("Would");
     }
 
     public boolean ifQuestion(String statement) {
