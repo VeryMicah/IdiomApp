@@ -13,13 +13,10 @@ import java.util.Random;
 public class MainMenu extends AppCompatActivity {
     private Resources res = null;
     QuestionChecker check = new QuestionChecker();
-
     //Used to select random statement, and select random options for replacement:
     private static Random generator = new Random();
-
     //Linked Hash Map to tell SentenceScanner what to look for.
     final LinkedHashMap<String, String[]> searchElements = new LinkedHashMap<>();
-
     private static SentenceScanner sentenceScan = new SentenceScanner();
 
     @Override
@@ -112,7 +109,9 @@ public class MainMenu extends AppCompatActivity {
 //todo the check always returns false
         if (check.ifQuestion(statement) == true) {
             statement = statement + "?";
-        } else statement = statement + ".";
+        } else if (statement.charAt(statement.length()-1) != '.') {
+            statement = statement + ".";
+        }
         return statement;
     }
 
