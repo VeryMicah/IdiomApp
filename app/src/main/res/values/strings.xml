@@ -10,8 +10,6 @@
     <string name="tag_adjective">aj/</string>
     <string name="tag_location">lc/</string>
 
-
-
     <!--Manually tagging at this point-->
     <string-array name="statements">
         <item>does a ns/bear avb/crap in the lc/woods</item>
@@ -25,8 +23,14 @@
         <item>a ns/job worth vbi/doing, is worth vbi/doing aj/well</item>
         <item>all\'s aj/fair in love and war</item>
         <item>don\'t avb/count your nm/chickens before they avb/hatch</item>
-        <item>The ns/apple never falls far from the ns/tree</item>
-        <item>A ns/fool and his ns/money are soon parted</item>
+        <item>the ns/apple never falls far from the ns/tree</item>
+        <item>a ns/fool and his ns/money are soon parted</item>
+        <item>ns/actions speak louder than ns/words</item>
+        <item>don\'t judge a ns/book by its ns/cover</item>
+        <item>the best thing since sliced ns/bread</item>
+        <item>caught between a ns/rock and a aj/hard ns/place</item>
+        <item>a ns/picture paints a thousand nm/words</item>
+        <item>don\'t put all your nm/eggs in one ns/basket</item>
         <item>give a ns/man a ns/fish and he dvb/eats for a day.  Teach a ns/man to ns/fish and he dvb/eats for a lifetime.</item>
     </string-array>
 
@@ -44,10 +48,17 @@
         <item>brave man</item>
         <item>friend</item>
         <item>apple</item>
+        <item>fish</item>
+        <item>cover</item>
+        <item>picture</item>
+        <item>basket</item>
+        <item>egg</item>
     </string-array>
 
+    <!--nm/-->
     <string-array name="nm_nounMultiple">
         <item>bears</item>
+        <item>actions</item>
         <item>Popes</item>
         <item>hats</item>
         <item>cucumbers</item>
@@ -60,6 +71,11 @@
         <item>friends</item>
         <item>woods</item>
         <item>chickens</item>
+        <item>fish</item>
+        <item>words</item>
+        <item>pictures</item>
+        <item>eggs</item>
+        <item>baskets</item>
     </string-array>
 
     <!--lc/-->
@@ -69,6 +85,10 @@
         <item>bush</item>
         <item>tree</item>
         <item>home</item>
+        <item>flat</item>
+        <item>ocean</item>
+        <item>sky</item>
+        <item>shop</item>
     </string-array>
 
     <!--aj/-->
@@ -78,6 +98,27 @@
         <item>wrong</item>
         <item>fair</item>
         <item>pretty</item>
+        <item>hard</item>
+        <item>angry</item>
+        <item>stupid</item>
+        <item>spicy</item>
+        <item>tangy</item>
+        <item>salty</item>
+        <item>sticky</item>
+        <item>prickly</item>
+        <item>tight</item>
+        <item>filthy</item>
+        <item>dirty</item>
+        <item>warm</item>
+        <item>wet</item>
+        <item>damp</item>
+        <item>rough</item>
+        <item>black</item>
+        <item>blue</item>
+        <item>pinkish</item>
+        <item>chubby</item>
+        <item>rotund</item>
+        <item>tiny</item>
     </string-array>
 
     <!--VERBS-->
@@ -88,6 +129,11 @@
         <item>paint</item>
         <item>study</item>
         <item>eat</item>
+        <item>boil</item>
+        <item>toast</item>
+        <item>cook</item>
+        <item>jump</item>
+        <item>work</item>
     </string-array>
 
     <string-array name="dvb_doingVerbs">
@@ -97,11 +143,27 @@
         <item>paints</item>
         <item>studies</item>
         <item>eats</item>
+        <item>boils</item>
+        <item>toasts</item>
+        <item>cooks</item>
+        <item>jumps</item>
+        <item>works</item>
     </string-array>
 
     <string-array name="vbi_verbing">
         <item>barking</item>
         <item>doing</item>
         <item>stabbing</item>
+        <item>crapping</item>
+        <item>burning</item>
+        <item>driving</item>
+        <item>painting</item>
+        <item>studying</item>
+        <item>eating</item>
+        <item>boiling</item>
+        <item>toasting</item>
+        <item>cooking</item>
+        <item>jumping</item>
+        <item>working</item>
     </string-array>
 </resources>

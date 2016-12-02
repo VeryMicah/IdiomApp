@@ -22,8 +22,8 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-
         res = this.getResources();
+
         //-----------------|-----------------TAGS-----------------|--------------REPLACEMENT WORDS--------------|
         searchElements.put(res.getString(R.string.tag_nounSingular), res.getStringArray(R.array.ns_nounSingular));
         searchElements.put(res.getString(R.string.tag_nounMultiple), res.getStringArray(R.array.nm_nounMultiple));
