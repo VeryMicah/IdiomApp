@@ -12,7 +12,6 @@ import java.util.Random;
 
 public class MainMenu extends AppCompatActivity {
     private Resources res = null;
-    QuestionChecker check = new QuestionChecker();
     //Used to select random statement, and select random options for replacement:
     private static Random generator = new Random();
     //Linked Hash Map to tell SentenceScanner what to look for.
@@ -70,14 +69,18 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //select and prepare a tagged statement from res
+                //select and prepare a random tagged statement from res
                 String sillyStatement = getRandomStatement();
-                //while the statement is equal to what's currently being displayed
+                //We don't want to display the same statement twice in a row, so:
+                //While the statement is equal to what's currently being displayed...
                 while (sillyStatement.equals(tv_statement.getText().toString()) == true) {
-                    //get a new one
+                    //...get a new one.
                     sillyStatement = getRandomStatement();
                 }
-                tv_statement.setText(sentenceScan.scanAndSwap(sillyStatement));
+                //format the statement and update the display.
+                sillyStatement = sentenceScan.scanAndSwap(sillyStatement);
+                sillyStatement = checkIfQuestion(sillyStatement);
+                tv_statement.setText(sillyStatement);
             }
         });
     }
@@ -103,12 +106,13 @@ public class MainMenu extends AppCompatActivity {
         return statement;
     }
 
-    /*checks for question and displays question mark, if necessary.*/
+    //Checks for question and alters sentence ending punctuation as necessary.
     private String checkIfQuestion(String statement) {
 
-//todo the check always returns false
-        if (check.ifQuestion(statement) == true) {
+        //if question, add question mark
+        if (sentenceScan.checkIfQuestion(statement)) {
             statement = statement + "?";
+        //else add full stop
         } else if (statement.charAt(statement.length()-1) != '.') {
             statement = statement + ".";
         }

@@ -3,6 +3,7 @@ package micah.idiomapp;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
@@ -69,6 +70,27 @@ public class SentenceScanner {
         }
         return buildSentence(split);
     }
+
+    public boolean checkIfQuestion(String statement) {
+        boolean isQuestion;
+        ArrayList<String> starters = new ArrayList<>(Arrays.asList(
+                "can","could","do","does","how","if","is","may","should","what","which","who","why","would"));
+
+        //Get the first word of the statement
+        int i = statement.indexOf(' ');
+        String firstWord = statement.substring(0, i).toLowerCase();
+
+        //Check if the first word is a question starter.
+        if (starters.contains(firstWord)) {
+            isQuestion = true;
+        } else isQuestion = false;
+
+        //// TODO: 2/12/2016 further validation goes here
+
+        return isQuestion;
+    }
+
+
 
     private ArrayList<String> splitIntoWords(String sentence) {
         //Break sentence down into words (splits on space character)
