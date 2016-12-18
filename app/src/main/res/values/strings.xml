@@ -25,9 +25,9 @@
         <item>don\'t avb/count your nm/chickens before they avb/hatch</item>
         <item>the ns/apple never falls far from the ns/tree</item>
         <item>a ns/fool and his ns/money are soon parted</item>
-        <item>ns/actions speak louder than ns/words</item>
+        <item>nm/actions speak louder than nm/words</item>
         <item>don\'t judge a ns/book by its ns/cover</item>
-        <item>the best thing since sliced ns/bread</item>
+        <item>the best thing since aj/sliced ns/bread</item>
         <item>caught between a ns/rock and a aj/hard ns/place</item>
         <item>a ns/picture paints a thousand nm/words</item>
         <item>don\'t put all your nm/eggs in one ns/basket</item>
@@ -119,6 +119,7 @@
         <item>chubby</item>
         <item>rotund</item>
         <item>tiny</item>
+        <item>sliced</item>
     </string-array>
 
     <!--VERBS-->

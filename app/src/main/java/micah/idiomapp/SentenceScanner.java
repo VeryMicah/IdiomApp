@@ -1,7 +1,5 @@
 package micah.idiomapp;
 
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -49,8 +47,11 @@ public class SentenceScanner {
     //Splits sentence into an ArrayList and processes each word, then reassembles.
     public String scanAndSwap(String sentence) {
         ArrayList<String> split = splitIntoWords(sentence);
-        checkForTags(split);
-        return buildSentence(split);
+        switcheroo(split);
+        String newSentence = buildSentence(split);
+        //todo check that the word before each noun is appropriate ("an","a","the")
+
+        return removeTags(newSentence);
     }
 
     //This is public as sometimes you may wish to remove tags from a sentence and display it as normal.
@@ -108,7 +109,7 @@ public class SentenceScanner {
 
     //    Searches a sentence for tagged words.
 //    If it finds one, the word is replaced with an alternative word (from the appropriate collection)
-    private ArrayList<String> checkForTags(ArrayList<String> words) {
+    private ArrayList<String> switcheroo(ArrayList<String> words) {
         //Check each word in the array...
         for (String word : words) {
             //...for each tag in the collection...
@@ -116,7 +117,7 @@ public class SentenceScanner {
                 //...if the word contains the tag...
                 if (word.contains(tag)) {
                     //...replace the word with a new word from the appropriate collection.
-                    words.set(words.indexOf(word), getNewWord(tag));
+                    words.set(words.indexOf(word), tag+getNewWord(tag));
                 }
             }
         }
